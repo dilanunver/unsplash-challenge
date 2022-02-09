@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
 
 function App() {
+
+
+  const photosHeader = async () => {
+    const url = `https://api.unsplash.com/photos/random?count=7&query=apple`
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': 'Client-ID LuVG7rQySHMqdMIz2LzLBl13oKBogmG2-HZnFVVY1XE',
+      },
+    })
+    const result = await response.json()
+
+
+  }
+  useEffect(() => {
+    photosHeader()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container' >
+      hello world
     </div>
   );
 }
