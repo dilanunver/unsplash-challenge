@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-
+  const [images, setImages] = useState([])
 
   const photosHeader = async () => {
     const url = `https://api.unsplash.com/photos/random?count=7&query=apple`
@@ -12,7 +12,7 @@ function App() {
       },
     })
     const result = await response.json()
-
+    setImages(result)
 
   }
   useEffect(() => {
@@ -21,7 +21,11 @@ function App() {
 
   return (
     <div className='container' >
-      hello world
+      {images.map((image) => (
+        <div key={image.id} className='images-small-container'>
+          <img src={image.urls.small} alt='small' className='small-image'></img>
+        </div>
+      ))}
     </div>
   );
 }
